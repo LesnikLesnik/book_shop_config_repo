@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: create
+    properties:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${ACCOUNT_SERVICE_DATABASE_HOST:localhost}:5432/bill_service_db
+    username: qwerty
+    password: qwerty
+
+server:
+  port: 8081
