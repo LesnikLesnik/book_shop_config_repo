@@ -10,11 +10,8 @@ spring:
     url: jdbc:postgresql://${BILL_SERVICE_DATABASE_HOST:localhost}:5432/bill_service_db
     username: qwerty
     password: qwerty
-
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+    
 server:
   port: 8082
-
-logging:
-  level:
-    com.example.bill.client: DEBUG
-    org.springframework.cloud.openfeign: DEBUG
