@@ -1,1 +1,17 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: none
+    properties:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${BOOK_SERVICE_DATABASE_HOST:localhost}:5432/book_service_db
+    username: qwerty
+    password: qwerty
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
 
+server:
+  port: 8083
