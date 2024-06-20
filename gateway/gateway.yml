@@ -11,13 +11,13 @@ spring:
           predicates:
             - Path=/api/accounts/**
           filters:
-            - name: AuthenticationFilter
+            - name: СustomAuthenticationFilter
         - id: bill-service
           uri: lb://bill-service
           predicates:
             - Path=/api/bills/**
           filters:
-            - name: AuthenticationFilter
+            - name: СustomAuthenticationFilter
         - id: book-service-getAllBooks
           uri: lb://book-service
           predicates:
