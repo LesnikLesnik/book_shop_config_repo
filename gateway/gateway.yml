@@ -9,17 +9,43 @@ spring:
         - id: account-service
           uri: lb://account-service
           predicates:
-            - Path=/account-service/**
-
+            - Path=/api/accounts/**
+          filters:
+            - name: AuthenticationFilter
         - id: bill-service
           uri: lb://bill-service
           predicates:
-            - Path=/bill-service/**
-
-        - id: book-service
+            - Path=/api/bills/**
+          filters:
+            - name: AuthenticationFilter
+        - id: book-service-getAllBooks
           uri: lb://book-service
           predicates:
-            - Path=/book-service/**
+            - Path=/api/books
+        - id: book-service-getBookById
+          uri: lb://book-service
+          predicates:
+            - Path=/api/books/{id}
+        - id: author-service-getAllAuthors
+          uri: lb://book-service
+          predicates:
+            - Path=/api/authors
+        - id: author-service-getAuthor
+          uri: lb://book-service
+          predicates:
+            - Path=/api/authors/{id}
+        - id: author-service-getBooksByAuthorId
+          uri: lb://book-service
+          predicates:
+            - Path=/api/authors/{id}/books
+        - id: auth-service-register
+          uri: lb://account-service
+          predicates:
+            - Path=/api/auth/register
+        - id: auth-service-login
+          uri: lb://account-service
+          predicates:
+            - Path=/api/auth/login 
 
 server:
   port: 8989
