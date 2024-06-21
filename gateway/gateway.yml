@@ -23,13 +23,25 @@ spring:
           filters:
             - RewritePath=/book-service(?<segment>/.*), $1
             - AddResponseHeader=X-Forwarded-Prefix, /book-service
-        # Добавляем маршрут для общего доступа к Swagger UI
-        - id: swagger-ui
-          uri: http://localhost:8989
+        - id: swagger-ui-account
+          uri: lb://account-service
           predicates:
-            - Path=/swagger-ui.html, /swagger-ui/**  # Swagger UI доступен по этим путям
+            - Path=/account-service/swagger-ui.html, /account-service/swagger-ui/**, /account-service/v3/api-docs
           filters:
-            - RewritePath=/swagger-ui(?<segment>/.*), /account-service/swagger-ui$1  # Переписываем на account-service
+            - RewritePath=/account-service(?<segment>/.*), $1
+        - id: swagger-ui-bill
+          uri: lb://bill-service
+          predicates:
+            - Path=/bill-service/swagger-ui.html, /bill-service/swagger-ui/**, /bill-service/v3/api-docs
+          filters:
+            - RewritePath=/bill-service(?<segment>/.*), $1
+        - id: swagger-ui-book
+          uri: lb://book-service
+          predicates:
+            - Path=/book-service/swagger-ui.html, /book-service/swagger-ui/**, /book-service/v3/api-docs
+          filters:
+            - RewritePath=/book-service(?<segment>/.*), $1
+
 
 
 server:
