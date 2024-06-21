@@ -1,25 +1,25 @@
 spring:
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      # routes:
-      #   - id: account-service
-      #     uri: lb://account-service
-      #     predicates:
-      #       - Path=/account-service/**
+  # cloud:
+  #   gateway:
+  #     discovery:
+  #       locator:
+  #         enabled: true
+  #         lower-case-service-id: true
+  #     # routes:
+  #     #   - id: account-service
+  #     #     uri: lb://account-service
+  #     #     predicates:
+  #     #       - Path=/account-service/**
 
-      #   - id: bill-service
-      #     uri: lb://bill-service
-      #     predicates:
-      #       - Path=/bill-service/**
+  #     #   - id: bill-service
+  #     #     uri: lb://bill-service
+  #     #     predicates:
+  #     #       - Path=/bill-service/**
 
-      #   - id: book-service
-      #     uri: lb://book-service
-      #     predicates:
-      #       - Path=/book-service/**
+  #     #   - id: book-service
+  #     #     uri: lb://book-service
+  #     #     predicates:
+  #     #       - Path=/book-service/**
 
 server:
   port: 8989
