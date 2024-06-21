@@ -1,15 +1,25 @@
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
-    groups:
-      enabled: true
-  openapi-gateway:
-    service-url:
-      account-service: http://localhost:8081/v3/api-docs
-      bill-service: http://localhost:8082/v3/api-docs
-      book-service: http://localhost:8083/v3/api-docs
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: account-service-swagger
+          uri: lb://account-service
+          predicates:
+            - Path=/account-service/swagger-ui.html, /account-service/v3/api-docs
+          filters:
+            - RewritePath=/account-service(?<segment>/.*), $1
+        - id: bill-service-swagger
+          uri: lb://bill-service
+          predicates:
+            - Path=/bill-service/swagger-ui.html, /bill-service/v3/api-docs
+          filters:
+            - RewritePath=/bill-service(?<segment>/.*), $1
+        - id: book-service-swagger
+          uri: lb://book-service
+          predicates:
+            - Path=/book-service/swagger-ui.html, /book-service/v3/api-docs
+          filters:
+            - RewritePath=/book-service(?<segment>/.*), $1
 
 server:
   port: 8989
