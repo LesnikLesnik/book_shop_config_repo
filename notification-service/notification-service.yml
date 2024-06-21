@@ -4,8 +4,8 @@ server:
 rabbitmq:
   port: 5672
   host: rabbitmq
-  username: guest
-  password: guest
+  username: ${RABBITMQ_USERNAME:guest}
+  password: ${RABBITMQ_PASSWORD:guest}
   listener:
     direct:
       default-requeue-rejected: true
