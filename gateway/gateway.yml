@@ -31,6 +31,6 @@ springdoc:
     path: /v3/api-docs
   openapi-gateway:
     service-url:
-      account-service: http://localhost:8989/account-service/v3/api-docs
-      bill-service: http://localhost:8989/bill-service/v3/api-docs
-      book-service: http://localhost:8989/book-service/v3/api-docs
+      account-service: http://account-service:8989/account-service/v3/api-docs
+      bill-service: http://bill-service:8989/bill-service/v3/api-docs
+      book-service: http://book-service:8989/book-service/v3/api-docs
