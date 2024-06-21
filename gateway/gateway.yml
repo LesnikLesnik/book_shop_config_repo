@@ -1,30 +1,33 @@
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: account-service
-          uri: lb://account-service
-          predicates:
-            - Path=/account-service/**
-        - id: bill-service
-          uri: lb://bill-service
-          predicates:
-            - Path=/bill-service/**
-        - id: book-service
-          uri: lb://book-service
-          predicates:
-            - Path=/book-service/**
-
 springdoc:
   swagger-ui:
+    enabled: true
     path: /swagger-ui.html
   api-docs:
     path: /v3/api-docs
-  openapi-gateway:
-    service-url:
-      account-service: http://localhost:8081/v3/api-docs
-      bill-service: http://localhost:8082/v3/api-docs
-      book-service: http://localhost:8083/v3/api-docs
+  group-configs:
+    # Определяем группы Swagger для каждого микросервиса
+    - group: account-service
+      paths-to-match: /account-service/**  # Путь, который нужно матчить
+    - group: bill-service
+      paths-to-match: /bill-service/** 
+    - group: book-service
+      paths-to-match: /book-service/**
+    - group: author-service
+      paths-to-match: /author-service/**
+
+# Настройки для агрегации Swagger документов с микросервисов
+springdoc-openapi:
+  api-docs:
+    groups:
+      # Настройка пути для каждого микросервиса
+      account-service:
+        url: http://localhost:8081/v3/api-docs
+      bill-service:
+        url: http://localhost:8082/v3/api-docs
+      book-service:
+        url: http://localhost:8083/v3/api-docs
+      author-service:
+        url: http://localhost:8084/v3/api-docs
 
 
 server:
