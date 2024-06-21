@@ -21,4 +21,5 @@ springdoc:
       bill-service: http://localhost:8082/v3/api-docs
       book-service: http://localhost:8083/v3/api-docs
 
-port: 8989
+server:
+  port: 8989
