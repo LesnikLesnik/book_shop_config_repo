@@ -1,51 +1,25 @@
-# spring:
-#   cloud:
-#     gateway:
-#       discovery:
-#         locator:
-#           enabled: true
-#           lower-case-service-id: true
-#       routes:
-#         - id: account-service
-#           uri: lb://account-service
-#           predicates:
-#             - Path=/api/accounts/**
-#           filters:
-#             - name: СustomAuthenticationFilter
-#         - id: bill-service
-#           uri: lb://bill-service
-#           predicates:
-#             - Path=/api/bills/**
-#           filters:
-#             - name: СustomAuthenticationFilter
-#         - id: book-service-getAllBooks
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/api/books
-#         - id: book-service-getBookById
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/api/books/{id}
-#         - id: author-service-getAllAuthors
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/api/authors
-#         - id: author-service-getAuthor
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/api/authors/{id}
-#         - id: author-service-getBooksByAuthorId
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/api/authors/{id}/books
-#         - id: auth-service-register
-#           uri: lb://account-service
-#           predicates:
-#             - Path=/api/auth/register
-#         - id: auth-service-login
-#           uri: lb://account-service
-#           predicates:
-#             - Path=/api/auth/login 
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/account-service/**
+
+        - id: bill-service
+          uri: lb://bill-service
+          predicates:
+            - Path=/bill-service/**
+
+        - id: book-service
+          uri: lb://book-service
+          predicates:
+            - Path=/book-service/**
 
 server:
   port: 8989
