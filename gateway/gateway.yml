@@ -2,24 +2,27 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: account-service-swagger
+        - id: account-service
           uri: lb://account-service
           predicates:
-            - Path=/account-service/swagger-ui.html, /account-service/v3/api-docs
+            - Path=/account-service/**
           filters:
             - RewritePath=/account-service(?<segment>/.*), $1
-        - id: bill-service-swagger
+            - AddResponseHeader=X-Forwarded-Prefix, /account-service
+        - id: bill-service
           uri: lb://bill-service
           predicates:
-            - Path=/bill-service/swagger-ui.html, /bill-service/v3/api-docs
+            - Path=/bill-service/**
           filters:
             - RewritePath=/bill-service(?<segment>/.*), $1
-        - id: book-service-swagger
+            - AddResponseHeader=X-Forwarded-Prefix, /bill-service
+        - id: book-service
           uri: lb://book-service
           predicates:
-            - Path=/book-service/swagger-ui.html, /book-service/v3/api-docs
+            - Path=/book-service/**
           filters:
             - RewritePath=/book-service(?<segment>/.*), $1
+            - AddResponseHeader=X-Forwarded-Prefix, /book-service
 
 server:
   port: 8989
