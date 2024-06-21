@@ -1,36 +1,25 @@
-# spring:
-#   cloud:
-#     gateway:
-#       discovery:
-#         locator:
-#           enabled: true
-#           lower-case-service-id: true
-#       routes:
-#         - id: account-service
-#           uri: lb://account-service
-#           predicates:
-#             - Path=/account-service/**
-
-#         - id: bill-service
-#           uri: lb://bill-service
-#           predicates:
-#             - Path=/bill-service/**
-
-#         - id: book-service
-#           uri: lb://book-service
-#           predicates:
-#             - Path=/book-service/**
-
-server:
-  port: 8989
-
+spring:
+  profiles: dev
+  cloud:
+    gateway:
+      routes:
+        - id: account-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/account-service/**
+        - id: bill-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/bill-service/**
+        - id: book-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/book-service/**
 springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
   openapi-gateway:
     service-url:
-      account-service: http://localhost:8989/account-service/v3/api-docs
-      bill-service: http://localhost:8989/bill-service/v3/api-docs
-      book-service: http://localhost:8989/book-service/v3/api-docs
+      account-service: http://localhost:8081/v3/api-docs
+      bill-service: http://localhost:8082/v3/api-docs
+      book-service: http://localhost:8083/v3/api-docs
+
+port: 8989
