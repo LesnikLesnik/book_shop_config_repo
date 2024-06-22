@@ -9,16 +9,21 @@ springdoc:
         name: account-service
       - url: /bill-service/v3/api-docs
         name: bill-service
-spring:
   cloud:
     gateway:
       routes:
-        - id: openapi
-          uri: http://localhost:${server.port}
-          predicates: 
-            - Path=/v3/api-docs/**
-          filters: 
-            - RewritePath=/v3/api-docs/?(?<segment>.*), /${segment}/v3/api-docs
+        - id: account-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/account-service/**
+          filters:
+            - RewritePath=/account-service/(?<segment>.*),/$\{segment}
+        - id: bill-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/bill-service/**
+          filters:
+            - RewritePath=/bill-service/(?<segment>.*),/$\{segment}
 
 
 server:
