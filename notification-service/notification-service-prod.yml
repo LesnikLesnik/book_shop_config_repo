@@ -9,3 +9,8 @@ rabbitmq:
   listener:
     direct:
       default-requeue-rejected: true
+
+logging:
+  level:
+    org.springframework.boot.context.config: DEBUG
+
