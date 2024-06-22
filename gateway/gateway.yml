@@ -1,33 +1,30 @@
 springdoc:
+  api-docs:
+    enabled: true
   swagger-ui:
     enabled: true
-    path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    # Определяем группы Swagger для каждого микросервиса
-    - group: account-service
-      paths-to-match: /account-service/**  # Путь, который нужно матчить
-    - group: bill-service
-      paths-to-match: /bill-service/** 
-    - group: book-service
-      paths-to-match: /book-service/**
-    - group: author-service
-      paths-to-match: /author-service/**
-
-# Настройки для агрегации Swagger документов с микросервисов
-springdoc-openapi:
-  api-docs:
-    groups:
-      # Настройка пути для каждого микросервиса
-      account-service:
-        url: http://localhost:8081/v3/api-docs
-      bill-service:
-        url: http://localhost:8082/v3/api-docs
-      book-service:
-        url: http://localhost:8083/v3/api-docs
-      author-service:
-        url: http://localhost:8084/v3/api-docs
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /account-service/v3/api-docs
+        name: account-service
+      - url: /bill-service/v3/api-docs
+        name: bill-service
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: account-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/account-service/**
+          filters:
+            - RewritePath=/account-service/(?<segment>.*),/$\{segment}
+        - id: bill-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/bill-service/**
+          filters:
+            - RewritePath=/bill-service/(?<segment>.*),/$\{segment}
 
 
 server:
