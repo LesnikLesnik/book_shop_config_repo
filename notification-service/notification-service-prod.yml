@@ -3,7 +3,7 @@ server:
 
 rabbitmq:
   port: 5672
-  host: rabbit
+  host: ${RABBIT_HOST:rabbit}
   username: ${RABBITMQ_USERNAME:guest}
   password: ${RABBITMQ_PASSWORD:guest}
   listener:
