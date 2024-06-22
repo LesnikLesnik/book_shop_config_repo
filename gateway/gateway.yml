@@ -3,7 +3,7 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
-    config-url: /v3/api-docs/swagger-config
+    config-url: /v3/api-docs
     urls:
       - url: /account-service/v3/api-docs
         name: account-service
