@@ -7,7 +7,7 @@ springdoc:
     urls:
       - url: /account-service/v3/api-docs
         name: account-service
-      - url: /bill-service/v3/api-docs
+      - url: /localhost:8082/v3/api-docs
         name: bill-service
   cloud:
     gateway:
