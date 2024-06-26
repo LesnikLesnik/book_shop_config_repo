@@ -32,5 +32,6 @@ spring:
           filters:
             - RewritePath=/book-service/(?<segment>.*), /$\{segment}
 
+
 server:
   port: 8989
