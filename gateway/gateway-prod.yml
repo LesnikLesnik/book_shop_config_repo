@@ -24,3 +24,6 @@ springdoc:
             - Path=/bill-service/**
           filters:
             - RewritePath=/bill-service/(?<segment>.*), /$\{segment}
+
+server:
+  port: 8989
