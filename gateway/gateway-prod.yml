@@ -1,36 +1,36 @@
-springdoc:
-  api-docs:
-    enabled: true
-  swagger-ui:
-    enabled: true
-    config-url: /v3/api-docs
-    urls:
-      - url: /account-service/v3/api-docs
-        name: account-service
-      - url: /bill-service/v3/api-docs
-        name: bill-service
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: account-service
-          uri: lb://account-service
-          predicates:
-            - Path=/account-service/**
-          filters:
-            - RewritePath=/account-service/(?<segment>.*), /$\{segment}
-        - id: bill-service
-          uri: lb://bill-service
-          predicates:
-            - Path=/bill-service/**
-          filters:
-            - RewritePath=/bill-service/(?<segment>.*), /$\{segment}
-        - id: book-service
-          uri: lb://book-service
-          predicates:
-            - Path=/book-service/**
-          filters:
-            - RewritePath=/book-service/(?<segment>.*), /$\{segment}
+# springdoc:
+#   api-docs:
+#     enabled: true
+#   swagger-ui:
+#     enabled: true
+#     config-url: /v3/api-docs
+#     urls:
+#       - url: /account-service/v3/api-docs
+#         name: account-service
+#       - url: /bill-service/v3/api-docs
+#         name: bill-service
+# spring:
+#   cloud:
+#     gateway:
+#       routes:
+#         - id: account-service
+#           uri: lb://account-service
+#           predicates:
+#             - Path=/account-service/**
+#           filters:
+#             - RewritePath=/account-service/(?<segment>.*), /$\{segment}
+#         - id: bill-service
+#           uri: lb://bill-service
+#           predicates:
+#             - Path=/bill-service/**
+#           filters:
+#             - RewritePath=/bill-service/(?<segment>.*), /$\{segment}
+#         - id: book-service
+#           uri: lb://book-service
+#           predicates:
+#             - Path=/book-service/**
+#           filters:
+#             - RewritePath=/book-service/(?<segment>.*), /$\{segment}
 
 server:
   port: 8989
