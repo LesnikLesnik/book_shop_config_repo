@@ -9,6 +9,7 @@ springdoc:
         name: account-service
       - url: /bill-service/v3/api-docs
         name: bill-service
+spring:
   cloud:
     gateway:
       routes:
